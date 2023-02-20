@@ -1,6 +1,5 @@
 import random
 
-
 class Node:
     def __init__(self, player, choice):
         self.player = player
@@ -8,7 +7,6 @@ class Node:
         self.next = None
 
 # Defining the player through a class
-
 
 class Player:
     def __init__(self, name):
@@ -87,7 +85,7 @@ class Game:
                 print(f"{self.player2.name} wins!")
                 self.player2.score += 1
 
-# Playing the game function
+# Playing the game method
     def play_game(self):
         while max(self.player1.score, self.player2.score) < 3:
             self.play_round()
@@ -107,7 +105,7 @@ player2 = Player("Computer")
 # Game invoked by an object
 game = Game(player1, player2)
 
-# Invoking the game by calling the function
+# Playing the game by calling the function
 game.play_game()
 
 # Print out the move history for each player
