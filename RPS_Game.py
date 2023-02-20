@@ -1,3 +1,5 @@
+import random
+
 
 class Node:
     def __init__(self, player, choice):
@@ -5,14 +7,16 @@ class Node:
         self.choice = choice
         self.next = None
 
-
 # Defining the player through a class
+
+
 class Player:
     def __init__(self, name):
         self.name = name
         self.score = 0
         self.history = None
         self.tail = None
+
 # method that describes the history of a player's moves
 
     def add_move_to_history(self, choice):
@@ -31,6 +35,12 @@ class Player:
             choice = input("Invalid choice. Please try again").lower()
         self.add_move_to_history(choice)
         self.choice = choice
+    
+    def choose_random(self):
+        choice = random.choice(["rock", "paper", "scissors"])
+        self.add_move_to_history(choice)
+        self.choice = choice
+
 # method that describes the player's move history
     def print_history(self):
         current_node = self.history
@@ -39,6 +49,8 @@ class Player:
             current_node = current_node.next
 
 # Defining the Game through a class
+
+
 class Game:
     def __init__(self, player1, player2):
         self.player1 = player1
@@ -47,9 +59,9 @@ class Game:
 
     def play_round(self):
         self.player1.choose()
-        self.player2.choose()
+        self.player2.choose_random()
         print(f"{self.player1.name} chose {self.player1.choice}")
-        print(f"{self.player2.name} chose {self.player2.choice} ")
+        print(f"{self.player2.name} chose {self.player2.choice}")
 
         if self.player1.choice == self.player2.choice:
             print("It's a tie!")
@@ -75,7 +87,7 @@ class Game:
                 print(f"{self.player2.name} wins!")
                 self.player2.score += 1
 
-# Playing the game function 
+# Playing the game function
     def play_game(self):
         while max(self.player1.score, self.player2.score) < 3:
             self.play_round()
@@ -84,13 +96,16 @@ class Game:
         else:
             print(f"{self.player2.name} wins the game!")
 
-# Players invoked by objects 
+
+
+
+# Players invoked by objects
 player1 = Player("Player 1")
-player2 = Player("Player 2")
+player2 = Player("Computer")
 
 
 # Game invoked by an object
-game = Game(player1,player2)
+game = Game(player1, player2)
 
 # Invoking the game by calling the function
 game.play_game()
